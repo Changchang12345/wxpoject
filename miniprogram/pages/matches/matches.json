@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "匹配到的人",
+  "usingComponents": {
+    "i-avatar": "../../dist/avatar/index"
+  }
+ 
+}

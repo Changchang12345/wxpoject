@@ -1,0 +1,23 @@
+
+{
+  "navigationBarTitleText": "match",
+  "usingComponents": {
+    "Select": "/components/select/select",
+    "SelectTime": "/components/select Time/select",
+    "Selectyue": "/components/selectyue/select",
+    "Selectri": "/components/selectri/selectri",
+    "Selectsheng": "/components/selectsheng/select",
+    "Selectshi": "/components/selectshi/select",
+    "i-card": "../../dist/card/index",
+    "i-button": "../../dist/button/index",
+    "i-badge": "../../dist/badge/index",
+    "i-icon": "../../dist/icon/index",
+    "i-page": "../../dist/page/index",
+    "i-input": "../../dist/input/index",
+    "i-divider": "../../dist/divider/index",
+    "i-tab-bar": "../../dist/tab-bar/index",
+    "i-tab-bar-item": "../../dist/tab-bar-item/index",
+    "i-radio-group": "../../dist/radio-group/index",
+    "i-radio": "../../dist/radio/index"
+  }
+  }

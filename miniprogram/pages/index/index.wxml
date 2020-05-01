@@ -1,0 +1,60 @@
+<!--index.wxml-->
+<!--<view class="page-section page-section-spacing swiper">
+  <swiper circular='ture' indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+    <block wx:for="{{background}}" wx:key="*this">
+      <swiper-item>
+        <view class="{{item}}"></view>
+      </swiper-item>
+    </block>
+  </swiper>
+</view>-->
+  <!--index.wxml-->
+
+
+
+
+<view class="content">
+	<view class="bt"><text class="bigtitle">请选择预出发时间</text></view>
+	<view class="sTime">
+
+			<view style="flex-item" class="yearSelect"><Select bind:myget='getDate1' prop-array='{{selectArray1}}'>预回家时间</Select></view>
+
+			<view style="flex-item" class="yearSelect"><Selectyue  bind:myget='getDate2' prop-array='{{selectArray2}}'>预回家时间</Selectyue></view>
+
+		<view style="flex-item" class="yearSelect">	<Selectri bind:myget='getDate3'  prop-array='{{selectArray3}}'>预回家时间</Selectri></view>
+
+	</view>
+      <view class="bt"><text class="bigtitle">请选择目的地</text></view>
+  <view class="des">
+
+    	<view style="flex-item" class="DeSelect"><Selectsheng bind:myget='getDate4' prop-array='{{selectArray4}}'>目的地</Selectsheng></view>
+      	<view style="flex-item" class="DeSelect"><Selectshi bind:myget='getDate5' prop-array='{{selectArray5}}'>目的地</Selectshi></view>
+  </view>
+   <view class="bt"><text class="bigtitle">请选择最长可接受时间差</text></view>
+  <view class="des">
+
+    	<view style="flex-item" class="TimeSelect">
+      <SelectTime bind:myget='getDate6' prop-array='{{selectArray6}}'>时间差</SelectTime>
+      </view>
+  </view>
+	<navigator url="/pages/matches/matches?title=mtaches" class='sec1'>
+		<button  open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" class="goodbutton"  hover-class="hover" bindtap='onAdd'>匹配</button>
+	</navigator>
+</view>
+
+<i-tab-bar fixed="ture" current="{{ current }}" bindchange="handleChange">
+<navigator url="/pages/index/index?title=mtaches">
+  <i-tab-bar-item  key="index" icon="homepage" current-icon="homepage_fill" title="匹配"></i-tab-bar-item>
+  </navigator>
+  <navigator url="pages/mine/mine?title=mtaches">
+	<i-tab-bar-item count="{{count}}" key="mine"  icon="mine" current-icon="mine_fill" title="我的"></i-tab-bar-item>
+  </navigator>
+</i-tab-bar>
+
+
+
+<!--后端样例-->
+<!--<button bindtap='bindtest'>匹配</button>
+<view wx:for="{{list}}">
+    姓名：{{item}}
+  </view> -->

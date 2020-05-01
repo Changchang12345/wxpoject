@@ -1,0 +1,27 @@
+/* pages/chooseLib/chooseLib.wxss */
+
+@import "../../style/guide.wxss";
+
+.a {
+  color: black;
+  background-color: antiquewhite;
+  border-bottom:black solid 2px ;
+  box-sizing: border-box;
+  margin:0px;
+  padding:0px;
+}
+.text{
+   padding-left: 5px;
+   padding-top: 3px;
+}
+.li{
+  padding-left: 10px;
+  font-size: medium;
+  font-style: oblique;
+  font-family:MicroSoft yahei;
+}
+.nick{
+  padding:3px;
+  font-size: xx-large;
+  color: rgb(95, 85, 85);
+}
