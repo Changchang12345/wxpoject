@@ -23,6 +23,9 @@ Page({
     selectArray1: [{
       "id": "1",
       "text": "2020"
+  },{
+    "id": "2",
+    "text": "1997"
   }],
   selectArray2: [{
     "id": "1",
@@ -128,8 +131,9 @@ getDate5:function(e){
 // by -llj
 getDate6: function(e) {
   this.setData({
-    dtime: e.detail.text
+    dtime: e.detail.text.substr(7, 1)
   })
+  console.log(e.detail);
 },
 // by -llj
 preSolveWhenAddOrMatch: function(){ // 更新dsum, 把日期转换为天数
@@ -152,11 +156,12 @@ onAdd: function() {
       // 在返回结果中会包含新创建的记录的 _id
       this.setData({
         counterId: res._id,
-      })
+      });
       wx.showToast({
         title: '发布成功',
-      })
-      console.log('[数据库] [新增记录] 成功，记录 _id: ', res._id)
+      });
+      console.log('[数据库] [新增记录] 成功，记录 _id: ', res._id);
+      this.onMatch();
     },
     fail: err => {
       wx.showToast({
@@ -170,23 +175,10 @@ onAdd: function() {
 // by -llj  此处有代码需要实现
 onMatch: function() {
   this.preSolveWhenAddOrMatch();
-  const db = wx.cloud.database();
-  const _ = db.command;
-  db.collection('users').where({
-    dsum: _.lte(this.data.dsum + dtime).and(_.gte(this.data.dsum - this.data.dtime))
-  }).get({
-    success: function(res) {
-      console.log(' [匹配记录] 成功：');
-      // 按 dsum - res.data[i].dsum的从小到大绝对值排序，以便把最靠近当前日期的item放在前面展示
-      //将res的每一条数据渲染成表单展示
-      for(var i = 0; i < res.data.length; i++){
-        console.log(res.data[i]);
-      }
-    },
-    fail: err => {
-      console.error(' [匹配记录] 失败：', err);
-    }
-  })
+  wx.setStorageSync('__data', JSON.stringify({
+    "dsum": this.data.dsum,
+    "dtime": this.data.dtime
+  }));
 },
   onQuery: function() {
     // const db = wx.cloud.database()

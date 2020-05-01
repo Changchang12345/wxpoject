@@ -31,11 +31,32 @@ Page({
       },
     })
     //1、引用数据库   
-    const db = wx.cloud.database({
+    /*
+    db = wx.cloud.database({
       //这个是环境ID不是环境名称     
       env: 'dev-115990'
-    })
+    })*/
+    var __data = JSON.parse(wx.getStorageSync('__data'));
+    const _ = db.command;
+    db.collection('users').where({
+      dsum: _.lte(Number(__data.dsum) + Number(__data.dtime)).and(_.gte(Number(__data.dsum) - Number(__data.dtime)))
+    }).get({
+      success: res => {
+        console.log(' [匹配记录] 成功：');
+        console.log(res.data);
+        this.setData({
+          ne: res.data,
+          nickName:'',
+          avatarUrl: ''
+        });
+      },
+      fail: err => {
+        console.error(' [匹配记录] 失败：', err);
+      }
+    });
+    wx.clearStorageSync('__data');
 
+    /*
     //2、开始查询数据了  news对应的是集合的名称   
     db.collection('users').get({
       //如果查询成功的话    
@@ -47,7 +68,7 @@ Page({
           avatarUrl:''
         })
       }
-    })
+    })*/
   },
 
   /**
