@@ -15,6 +15,8 @@ Page({
     day:'',
     province:'',
     district:'',
+    dtime: '',               //时间差
+    dsum: 0,                 //日期换算成天数
     current: '',
     dot:'true',
     count:'3',
@@ -123,73 +125,69 @@ getDate5:function(e){
   }) ,
   console.log(e.detail)
 },
-  onAdd: function () {
-     const db = wx.cloud.database()
-     db.collection('users').where({
-      _openid:this.data.openid
-   }).get({
-      success: res => {
-        this.setData({
-          data:res.data
-        })
-        //console.log(_openid);
-        console.log("zzzzzzzzzzzzzzzz",res.data);
-        var flag=0;
-        for(var i=0;i<res.data.length;i++)
-        { 
-         
-          //console.log("zxzxzxz",this.data.day,res.data[i].day);
-          if(this.data.year===res.data[i].year && this.data.month===res.data[i].month && this.data.day===res.data[i].day && this.data.province===res.data[i].province && this.data.district===res.data[i].district)
-          {flag=1;break;}
-        }
-        if(flag==0) this.addNoSame();
-        flag=0;
-      },
-      fail: err => {
-        console.error(' [查询openid记录] 失败：', err);
-        this.addNoSame();
+// by -llj
+getDate6: function(e) {
+  this.setData({
+    dtime: e.detail.text
+  })
+},
+// by -llj
+preSolveWhenAddOrMatch: function(){ // 更新dsum, 把日期转换为天数
+  this.data.dsum = Math.ceil(new Date(this.data.year + '-' + this.data.month + '-' + this.data.day).getTime() / 24 / 3600 / 1000);
+},
+// by -llj
+onAdd: function() {
+  this.preSolveWhenAddOrMatch();
+  const db = wx.cloud.database()
+  db.collection('users').add({
+    data: {
+      year: this.data.year,
+      month: this.data.month,
+      day: this.data.day,
+      province: this.data.province,
+      district: this.data.district,
+      dsum: this.data.dsum
+    },
+    success: res => {
+      // 在返回结果中会包含新创建的记录的 _id
+      this.setData({
+        counterId: res._id,
+      })
+      wx.showToast({
+        title: '发布成功',
+      })
+      console.log('[数据库] [新增记录] 成功，记录 _id: ', res._id)
+    },
+    fail: err => {
+      wx.showToast({
+        icon: 'none',
+        title: '发布失败'
+      })
+      console.error('[数据库] [新增记录] 失败：', err)
+    }
+  })
+},
+// by -llj  此处有代码需要实现
+onMatch: function() {
+  this.preSolveWhenAddOrMatch();
+  const db = wx.cloud.database();
+  const _ = db.command;
+  db.collection('users').where({
+    dsum: _.lte(this.data.dsum + dtime).and(_.gte(this.data.dsum - this.data.dtime))
+  }).get({
+    success: function(res) {
+      console.log(' [匹配记录] 成功：');
+      // 按 dsum - res.data[i].dsum的从小到大绝对值排序，以便把最靠近当前日期的item放在前面展示
+      //将res的每一条数据渲染成表单展示
+      for(var i = 0; i < res.data.length; i++){
+        console.log(res.data[i]);
       }
-    })
-  },
-  addNoSame:function(){
-    console.log("遍历成功"); //console.log(this.data.nickName);
-    const db = wx.cloud.database()
-    db.collection('users').add({
-      data: {
-       year:this.data.year,
-       month :this.data.month,
-       day:this.data.day,
-       province:this.data.province,
-       district:this.data.district,
-       nkName:this.data.nkname,
-       aUrl:this.data.avaUrl,
-      },
-      success: res => {
-        // 在返回结果中会包含新创建的记录的 _id
-        this.setData({
-          counterId: res._id,
-          year:this.data.year,
-          month :this.data.month,
-          day:this.data.day,
-          province:this.data.province,
-          district:this.data.district,
-          nkName:this.data.nkname,
-          aUrl:this.data.avaUrl,
-        })   ,       console.log(nkName),
-        wx.showToast({
-          title: '匹配成功',
-       })
-        console.log('[数据库] [新增记录] 成功，记录 _id: ', res._id)
-      },
-      fail: err => {
-        wx.showToast({
-          icon: 'none',
-          title: '匹配失败'
-        })
-        console.error('[数据库] [新增记录] 失败：', err)
-      }
-    })
-  },
+    },
+    fail: err => {
+      console.error(' [匹配记录] 失败：', err);
+    }
+  })
+},
   onQuery: function() {
     // const db = wx.cloud.database()
     // // 查询当前用户所有的 counters
