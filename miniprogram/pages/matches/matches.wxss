@@ -1,0 +1,44 @@
+/* pages/chooseLib/chooseLib.wxss */
+
+@import "../../style/guide.wxss";
+
+.a {
+  color: black;
+  background-color: antiquewhite;
+  border-bottom:black solid 2px ;
+  box-sizing: border-box;
+  margin:0px;
+  padding:0px;
+}
+.text{
+   padding-left: 5px;
+   padding-top: 3px;
+}
+.li{
+  padding-left: 36px;
+  font-size: medium;
+  font-style: oblique;
+  font-family:MicroSoft yahei;
+}
+.info{
+  padding:10px;
+  font-size: 10px;
+}
+.nick{
+  padding-left:5px;
+  font-size: 20px;
+  color:black;
+}
+.btn{
+  display: flex;
+  justify-content: center;
+  flex-direction:row;
+  flex-grow: 1;
+  
+}
+.btn1{
+  padding-right: 2.5px;
+}
+.btn2{
+  padding-left:2.5px;
+}
