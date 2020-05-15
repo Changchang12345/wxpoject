@@ -37,8 +37,11 @@
       <SelectTime bind:myget='getDate6' prop-array='{{selectArray6}}'>时间差</SelectTime>
       </view>
   </view>
-	<navigator url="/pages/matches/matches?title=mtaches" class='sec1'>
-		<button  open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" class="goodbutton"  hover-class="hover" bindtap='onAdd'>匹配</button>
+	<navigator url="/pages/matches/matches?title=mtaches" class='sec1' style="float:left">
+		<button  open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" class="goodbutton"  hover-class="hover" bindtap='onMatch'>匹配</button>
+	</navigator>
+  <navigator url="/pages/matches/matches?title=mtaches" class='sec1' style="float:top">
+    <button  open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" class="goodbutton"  hover-class="hover" bindtap='onAdd'>发布</button>
 	</navigator>
 </view>
 

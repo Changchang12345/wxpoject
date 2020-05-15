@@ -6,12 +6,18 @@
 	<view class="text">
 		<i-avatar src="{{item.aUrl}}" size="large"></i-avatar>
 		<text class="nick">{{item.nkName}}</text>
+	</view>
+	<view class="info">
 		<text class="li"> 出发日期： {{item.year}}-{{item.month}}-{{item.day}} 目的地： {{item.province}}-{{item.district}}</text>
 	</view>
-	<view class="btn">
-		<navigator url="/pages/room/room">
-			<button open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" bindtap="go" data-id="{{item._openid}}+{{openid}}">进入聊天</button>
+		<view class="btn">
+		<view class="btn1">
+		<navigator  style="flex-item" url="/pages/room/room">
+			<i-button shape="circle" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" bindtap="go" data-id="{{item._openid}}+{{openid}}">进入聊天</i-button>
 		</navigator>
-		<button>查看个人信息</button>
+		</view>
+		<view class="btn2">
+	<i-button bindtap="handleClick" type="info" shape="circle">查看个人信息</i-button>
+	</view>
 	</view>
 </view>
