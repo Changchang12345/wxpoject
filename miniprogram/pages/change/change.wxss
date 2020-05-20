@@ -1,0 +1,11 @@
+/* miniprogram/pages/change/change.wxss */
+page{
+  background: rgb(132, 192, 241);
+  box-sizing: border-box;
+  padding: 0px;
+  margin: 0px;
+}
+.text1{
+  font-size: larger;
+  font-style: unset;
+}

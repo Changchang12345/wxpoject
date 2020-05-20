@@ -1,55 +1,73 @@
 // pages/chooseLib/chooseLib.js
-//var app = getApp();
+var app = getApp();
 //console.log(app.globalData.op)
 const db = wx.cloud.database({});
-const cont = db.collection('users');
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
+      userInfo: {},
       items:[],
       ne:[],
       id:[],
-      openid:'',
+      myopenid:'',
+      aUrl:'',
+      nkName:'',
+      bz:''
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-    //console.log(this.data.nickName, this.data.avaUrl)
-  
   onLoad: function (options) {
-    //console.log(this.data.Myopenid)
-    var that = this;
-    wx.getStorage({//获取本地缓存
-      key:"openid",
-      success:function(res){
-        that.setData({
-          openid:res.data
-        });console.log(that.data.openid)
-      },
-    })
-    //1、引用数据库   
-    const db = wx.cloud.database({
-      //这个是环境ID不是环境名称     
-      env: 'dev-115990'
-    })
-
-   
-    
-     //2、开始查询数据了  news对应的是集合的名称  
-      db.collection('users').get({
-      //如果查询成功的话    
-      success: res => {
-        //这一步很重要，给ne赋值，没有这一步的话，前台就不会显示值      
-        this.setData({
-          ne: res.data,
-          nickName:'',
-          avatarUrl:''
-        })
-      }
-    })
-  }
-
+    //console.log('全部变量appopenid',app.appopenid)
+  },
+  onShow: function () {
+    this.getUserInfo();
+    db.collection('beizhu').where({
+      _openid:app.appopenid
+    }).get({
+          success:(res) =>{
+              console.log('成功获取备注',res.data)
+              this.setData({
+                bz:res.data[0].bz
+              })
+          },
+          fail: res => {
+            console.log('没有找到备注')
+          }
+      })
+  },
+  getUserInfo(){
+    //判断用户是否授权
+    wx.getSetting({
+     success: (data) => {
+       console.log(data)
+       if(data.authSetting['scope.userInfo']){
+         this.setData({
+           isShow:false
+         })
+       }else{
+         this.setData({
+           isShow:true
+         })
+       }
+       
+     }
+   })
+   //获取用户信息
+   wx.getUserInfo({
+     success: (data) => {
+       console.log(data)
+       this.setData({
+         userInfo: data.userInfo,
+         nkName:data.userInfo.nickName,
+         aUrl:data.userInfo.avatarUrl
+       })
+     },
+     fail: (data) => {
+       console.log('shibai')
+     }
+   })
+ },
+ handleGetUserInfo(data){
+   //用户是否点击的允许授权
+   if(data.detail.rawData){
+     this.getUserInfo();
+   }
+ },
 })

@@ -20,7 +20,6 @@ Page({
     //console.log(this.data.nickName, this.data.avaUrl)
   
   onLoad: function (options) {
-    //console.log(this.data.Myopenid)
     var that = this;
     wx.getStorage({//获取本地缓存
       key:"openid",

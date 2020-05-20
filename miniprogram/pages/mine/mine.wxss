@@ -1,0 +1,28 @@
+page{
+  background: rgb(132, 192, 241);
+  box-sizing: border-box;
+  padding: 0px;
+  margin: 0px;
+}
+.mineflag{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.userp1{
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 100rpx;
+  margin: 100rpx 100rpx 10rpx 100rpx;
+}
+.text1{
+  margin: 10rpx;
+  font-size: large;
+}
+.bz{
+  margin: 10rpx;
+}
+.rowLayout {
+  display: flex;
+  flex-direction: row;
+}

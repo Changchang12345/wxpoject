@@ -22,8 +22,8 @@
 			"outputPath": ""
 		}
 	},
-	"appid": "wx68262e135382e8cf",
-	"projectname": "miniprogram-1",
+	"appid": "wxfa8730814eac9648",
+	"projectname": "minione",
 	"libVersion": "2.8.1",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
@@ -43,13 +43,38 @@
 		"game": {
 			"list": []
 		},
+		"gamePlugin": {
+			"current": -1,
+			"list": []
+		},
 		"miniprogram": {
 			"current": 0,
 			"list": [
 				{
 					"id": -1,
 					"name": "db guide",
-					"pathName": "pages/databaseGuide/databaseGuide"
+					"pathName": "pages/databaseGuide/databaseGuide",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "pages/change/change",
+					"pathName": "pages/change/change",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/history/history",
+					"pathName": "pages/history/history",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/message/message",
+					"pathName": "pages/message/message",
+					"scene": null
 				}
 			]
 		}

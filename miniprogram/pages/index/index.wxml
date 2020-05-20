@@ -49,7 +49,7 @@
 <navigator url="/pages/index/index?title=mtaches">
   <i-tab-bar-item  key="index" icon="homepage" current-icon="homepage_fill" title="匹配"></i-tab-bar-item>
   </navigator>
-  <navigator url="pages/mine/mine?title=mtaches">
+  <navigator url="pages/mine/mine?title=mtaches&aUrl={{avaUrl}}&nkName={{nkname}}">
 	<i-tab-bar-item count="{{count}}" key="mine"  icon="mine" current-icon="mine_fill" title="我的"></i-tab-bar-item>
   </navigator>
 </i-tab-bar>
