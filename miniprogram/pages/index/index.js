@@ -146,9 +146,7 @@ onAdd: function() {
       day: this.data.day,
       province: this.data.province,
       district: this.data.district,
-      dsum: this.data.dsum,
-      nkName:this.data.nkname,
-      aUrl:this.data.avaUrl
+
     },
     success: res => {
       // 在返回结果中会包含新创建的记录的 _id
