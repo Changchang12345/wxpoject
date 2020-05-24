@@ -63,24 +63,20 @@ selectArray6: [{
   
 //页面初始化就加载的数据
   onLoad: function (options) {
-   
-    // if (app.globalData.openid) {
-    //   this.setData({
-    //     openid: app.globalData.openid
-    //   })
-    // } 
     wx.cloud.callFunction({
-      name:"login",
-      success(res){
-        console.log("获取成功",res);
+      name:'login',
+      success:(res)=>{
+        console.log('result',res.result)
+        this.setData({
+          openid:res.result.openid,
+        })
+        app.appopenid=this.data.openid
+        console.log(app.appopenid)
       },
-      fail(res){
-        console.log("获取失败");
-      }
+      fail:console.error
     })
   },
   bindGetUserInfo(e){
-   
     this.setData({
       nkname: e.detail.userInfo.nickName,
       avaUrl:e.detail.userInfo.avatarUrl,
@@ -150,7 +146,7 @@ onAdd: function() {
       day: this.data.day,
       province: this.data.province,
       district: this.data.district,
-      dsum: this.data.dsum
+
     },
     success: res => {
       // 在返回结果中会包含新创建的记录的 _id

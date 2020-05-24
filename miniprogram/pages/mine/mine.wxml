@@ -1,17 +1,1 @@
 <!--pages/chooseLib/chooseLib.wxml-->
-<view class='a' wx:for="{{ne}}">
-	<!--wx:for是微信数据绑定的一种方式，该数组有多少数据就显示多少个view-->
-	<!--index为每个数据对应的下标-->
-	<!--item就相当于数组名+下标的结合体，适用于调用数组所有数据-->
-	<view class="text">
-		<i-avatar src="{{item.aUrl}}" size="large"></i-avatar>
-		<text class="nick">{{item.nkName}}</text>
-		<text class="li"> 出发日期： {{item.year}}-{{item.month}}-{{item.day}} 目的地： {{item.province}}-{{item.district}}</text>
-	</view>
-	<view class="btn">
-		<navigator url="/pages/room/room">
-			<button open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" bindtap="go" data-id="{{item._openid}}+{{openid}}">进入聊天</button>
-		</navigator>
-		<button>查看个人信息</button>
-	</view>
-</view>

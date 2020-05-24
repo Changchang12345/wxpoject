@@ -1,0 +1,19 @@
+/* miniprogram/pages/history/history.wxss */
+.a {
+  color: black;
+  background-color: antiquewhite;
+  border-bottom:black solid 2px ;
+  box-sizing: border-box;
+  margin:0px;
+  padding:0px;
+}
+.info{
+  padding:10px;
+  font-size: 10px;
+}
+.li{
+  padding-left: 36px;
+  font-size: medium;
+  font-style: oblique;
+  font-family:MicroSoft yahei;
+}

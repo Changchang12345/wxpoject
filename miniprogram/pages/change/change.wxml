@@ -1,0 +1,8 @@
+<!--miniprogram/pages/change/change.wxml-->
+<view class='change'>
+<text class='text1'>修改备注</text>
+<view class="changebz">
+    <input class="input"  placeholder="请输入备注" 
+    bindinput="getbz" bindblur="bindChangebz"/>
+</view>
+</view>

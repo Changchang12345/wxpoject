@@ -3,7 +3,10 @@
     "pages/index/index",
     "pages/matches/matches",
     "pages/mine/mine",
-    "pages/room/room"
+    "pages/room/room",
+    "pages/change/change",
+    "pages/history/history",
+    "pages/message/message"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

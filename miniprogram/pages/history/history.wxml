@@ -1,0 +1,6 @@
+<!--miniprogram/pages/history/history.wxml-->
+<view class='a' wx:for="{{ne}}">
+	<view class="info">
+		<text class="li"> 出发日期： {{item.year}}-{{item.month}}-{{item.day}} 目的地： {{item.province}}-{{item.district}}</text>
+	</view>
+</view>
